@@ -223,7 +223,8 @@ public class BeerSelect extends HttpServlet {
     }
 }
 ```
-
+## Creating the Test For The Model
+Before creating the model itself
 
 
 # Chapter 4
