@@ -97,9 +97,107 @@ In effect we're replacing traditional CGI scripts with our Servlets and GlassFis
 
 # Chapter 2: Web App Architecture
 
+## Why Containers
+
+Servlets require the help of managing their own lifecycles.
+This is where containers (in our case glassfish) come in.
+
+Servlets don't have a main() method.
+They're called by the container (which is another java application), for it's methods such as doPost or doGet.
+
+## What Do The Container Give You?
+
+Communication Support - servlet and web server communications are simplified by the container.
+
+Lifecycle Management - You don't have to worry about resource management, the container controls all of that for you.
+
+Multithreading Support - Not really relevant for us, but still handy.
+
+Declarative Security - XML DD can change security details, without having to deal with Java Source Files.
+
+JSP Support - Can have interactive pages in the forms of these little buggers.
+
+## How Does a Container Handle a Request?
+
+So you make the request to the container, the container then makes a request and a response into a thread that links with the servlet.
+
+The container then calls Servlet methods, and then kills the thread when it's all over.
+
+## Servlet Names
+
+URL Name that is Client Facing : ex /login
+
+Dev Name - LoginServlet
+
+Actual File Name - LoginServlet.class
+
+## Deployment Descriptor URL Mapping
+
+```xml
+<web-app...> <!-- This is completely barebones and missing a lot -->
+	<servlet>
+    	<servlet-name>Internal Name</servlet-name>
+    	<serlvet-class>foo.Servlet</serlvet-class> <!-- The .class file without the ender -->
+	</servlet>
+
+    <servlet-mapping>
+    	<servlet-name>Internal Name</servlet-name>
+        <url-pattern>/URLPattern1</url-pattern>
+    </servlet-mapping>
+
+</web-app...>
+```
+
+## MVC
+
+Model:
+
+* Holds the plain java real business logic, and states.
+* Only part that interacts with the DB
+
+Controller:
+
+* Takes input from request and sends it to the model.
+* Tells the model to update, makes new state available to view.
+
+View:
+
+* Gets state from controller.
+* Takes user inputs.
+
+## Page 58 Question
+
+1. JSP --> View
+2. non-servlet Java Class --> Model
+3. Servlet --> Controller
+4. M stands for Model
+5. V stands for View
+6. C stands for Controller
+
+## Page 59 Question:
+
+Stars on what I got wrong
+
+| Task                                                         | Web Server, Container, or Servlet |
+| ------------------------------------------------------------ | --------------------------------- |
+| Create request and response objects                          | Container                         |
+| Calls the service() method                                   | Container                         |
+| Starts New Thread to handle requests                         | Container                         |
+| Converts response to http response                           | Container                         |
+| Knows HTTP                                                   | Web Server*                       |
+| Adds HTML to response object                                 | Servlet                           |
+| Has a ref to response objects                                | Container, Servlet*               |
+| Finds URLs in the DD                                         | Container                         |
+| Deletes the request and response objects                     | Container                         |
+| Co-ordinates making dynamic content                          | Web Server*, Container            |
+| Manages Lifecycles                                           | Container                         |
+| Has a name that matches the <servlet-class> element in the DD | Servlet                           |
 
 
-# Chapter 3
+
+# Chapter 3: Mini MVC Tutorial
+
+
 
 # Chapter 4
 
