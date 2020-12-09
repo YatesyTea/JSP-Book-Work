@@ -10,6 +10,9 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 import static org.junit.Assert.*;
 
 /**
@@ -17,9 +20,9 @@ import static org.junit.Assert.*;
  * @author Yates
  */
 public class BeerExpertTest {
-    
+
     private String color;
-            
+
     public BeerExpertTest() {
     }
 
@@ -31,13 +34,11 @@ public class BeerExpertTest {
     @Before
     public void setUp() {
         System.out.println("=== Set Up");
-        color = "clear";
     }
 
     @After
     public void tearDown() {
         System.out.println("=== Tear Down");
-        color = null;
     }
 
     @AfterClass
@@ -46,14 +47,25 @@ public class BeerExpertTest {
     }
 
     // Test Methods Below
-    
     @Test
     public void hello() {
         System.out.println("Hello World");
     }
 
     @Test
-    public String getBrands(String color) {
-        System.out.println();
+    public void testLight() {
+        System.out.println("Testing Light");
+
+        // Calling getBrands
+        ArrayList<String> result = beerExpert.getBrands("light");
+
+        // Creating Expected Result
+        List expResult = new ArrayList();
+        expResult.add("Jail Pales Ale");
+        expResult.add("Gout Stout");
+
+        // Assessing
+        assertEquals(expResult, result);
+
     }
 }
