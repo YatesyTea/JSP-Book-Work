@@ -5,51 +5,38 @@
  */
 package Model;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import java.util.Arrays;
-import java.util.ArrayList;
-import java.util.List;
 import static org.junit.Assert.*;
 
 /**
  *
  * @author Yates
  */
-public class BeerExpertTest {
-
-    private String color;
-
-    public BeerExpertTest() {
+public class BeerExperTest {
+    
+    public BeerExperTest() {
     }
-
+    
     @BeforeClass
     public static void setUpClass() {
-        System.out.println("===Set Up Class");
     }
-
-    @Before
-    public void setUp() {
-        System.out.println("=== Set Up");
-    }
-
-    @After
-    public void tearDown() {
-        System.out.println("=== Tear Down");
-    }
-
+    
     @AfterClass
     public static void tearDownClass() {
-        System.out.println("=== Tear Down Class");
     }
-
-    // Test Methods Below
-    @Test
-    public void hello() {
-        System.out.println("Hello World");
+    
+    @Before
+    public void setUp() {
+    }
+    
+    @After
+    public void tearDown() {
     }
 
     @Test
@@ -57,7 +44,7 @@ public class BeerExpertTest {
         System.out.println("Testing Light");
 
         // Calling getBrands
-        ArrayList<String> result = beerExpert.getBrands("light");
+        ArrayList<String> result = getBrands("light");
 
         // Creating Expected Result
         List expResult = new ArrayList();
